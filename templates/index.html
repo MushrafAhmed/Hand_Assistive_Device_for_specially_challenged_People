@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vitual Voice</title>
+    <!--<link rel="stylesheet" href="style.css" />-->
+    <!-- Unicons -->
+    <!--<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" /> -->
+    <style>
+      body {
+        background-image: url("/styles/BGIMG.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="nav_logo">Vitual voice</a>
+
+        <ul class="nav_items">
+          <li class="nav_item">
+            <a href="/lobby.html" class="nav_link">Home</a>
+            <a href="#" class="nav_link">Services</a>
+            <a href="#" class="nav_link" id="about-link">About us</a>
+            <a href="#" class="nav_link">Contact</a>
+          </li>
+        </ul>
+
+        <button class="button" id="form-open">Login</button>
+        <!-- <button class="button" id="form-open">Signup</button> -->
+
+      </nav>
+    </header>
+
+    <!-- Home -->
+    <section class="home">
+      <div class="form_container">
+        <i class="uil uil-times form_close"></i>
+        <!-- Login From -->
+        <div class="form login_form">
+          <form action="#" enctype="multipart/form-data">
+            <h2>Login</h2>
+
+            <div class="input_box">
+              <input type="email" placeholder="Enter your email" required />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" placeholder="Enter your password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+
+            <div class="option_field">
+              <span class="checkbox">
+                <input type="checkbox" id="check" />
+                <label for="check">Remember me</label>
+              </span>
+              <a href="#" class="forgot_pw">Forgot password?</a>
+            </div>
+
+            <button class="button">Login Now</button>
+
+            <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
+          </form>
+        </div>
+
+        <div id="video-container">
+          <video id="video-stream" autoplay></video>
+        </div>
+        <button id="capture-btn">Capture Frame</button>
+      </div>
+    
+        
+
+        <!-- Signup From -->
+        <div class="form signup_form">
+          <form action="#" enctype="multipart/form-data">
+            <h2>Signup</h2>
+
+            <div class="input_box">
+              <input type="email" placeholder="Enter your email" required />
+              <i class="uil uil-envelope-alt email"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" placeholder="Create password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+            <div class="input_box">
+              <input type="password" placeholder="Confirm password" required />
+              <i class="uil uil-lock password"></i>
+              <i class="uil uil-eye-slash pw_hide"></i>
+            </div>
+
+            <button class="button">Signup Now</button>
+
+            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
+          </form>
+        </div>
+        
+        <!-- About Us -->
+        <div id="about-container" style="display: none;">
+          <p>Welcome to Visual Voices! We are a team of passionate individuals dedicated to developing a groundbreaking website that aims to revolutionize communication for the deaf and hard-of-hearing community.</p>
+
+  <p>Our mission is to bridge the communication gap by leveraging cutting-edge technology to recognize and convert American Sign Language (ASL) into text and voice.</p>
+
+  <p>With Visual Voices, we envision a world where people with hearing impairments can effortlessly communicate with others, breaking barriers and fostering inclusivity.</p>
+
+  <p>Our team consists of highly skilled developers, designers, and linguists who have come together with a shared vision to empower individuals with hearing challenges.</p>
+
+  <p>Join us on this exciting journey as we strive to make a positive impact in the lives of millions through accessible communication.</p>
+        </div>
+      </div>
+
+      <div id="predicted_text_container">
+        <h3>Prediction: <span id="predicted_text"></span></h3>
+      </div>
+        
+      <!--<button id="capture-btn">Capture Frame</button>-->
+
+
+
+      <div>
+        <button id="emergency-btn" onclick="handleEmergency()">Emergency</button>
+      </div>
+      <style>
+      
+        #emergency-btn {
+          display: block;
+          margin: 10px auto;
+          padding: 10px 20px;
+          background-color: red;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 18px;
+          font-weight: bold;
+          transition: background-color 0.3s ease;
+        }
+      
+        #emergency-btn:hover {
+          background-color: #ff0000;
+        }
+      </style>
+
+      
+    </section>
+
+    <script>
+      function handleEmergency() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(sendEmergencyEmail);
+        } else {
+          console.error("Geolocation is not supported by this browser.");
+        }
+      }
+    
+      function sendEmergencyEmail(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+    
+        // Prepare the data to be sent to the Flask endpoint
+        const data = {
+          emergency_contact: 'datlarakesh3@gmail.com',
+          latitude: latitude,
+          longitude: longitude
+        };
+    
+        // Send an AJAX request to the Flask endpoint
+        fetch('/emergency', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => {
+          console.log('Emergency email sent successfully.');
+        })
+        .catch(error => {
+          console.error('Error sending emergency email:', error);
+        });
+      }
+    </script>
+
+
+
+    <input type="hidden" id="image-data" name="image-data" />
+
+    <script>
+      document.getElementById("about-link").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default link behavior
+
+        var aboutContainer = document.getElementById("about-container");
+        if (aboutContainer.style.display === "none") {
+          aboutContainer.style.display = "block";
+        } else {
+          aboutContainer.style.display = "none";
+        }
+      });
+    </script>
+
+
+    <script>
+      // Get the video stream element
+      const video = document.getElementById('video-stream');
+
+      // Function to start the video capture
+      function startVideoCapture() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+              // Set the video stream as the source for the video element
+              video.srcObject = stream;
+            })
+            .catch(function (error) {
+              console.error('Error accessing webcam:', error);
+            });
+        } else {
+          console.error('getUserMedia not supported');
+        }
+      }
+
+      function handleResponse(response) {
+        if (response.predicted_text) {
+          // Display the predicted text on the web page
+          const predictedText = response.predicted_text;
+          document.getElementById('predicted_text').textContent = predictedText;
+        } else if (response.error) {
+          // Handle the error returned from the server
+          console.error('Error:', response.error);
+        }
+      }
+
+       /* // Function to send the captured frame to the server
+       function sendFrame(imageDataUrl) {
+        // Create a new FormData object
+        const formData = new FormData();
+
+        // Append the image data to the FormData object
+        formData.append('image-data', imageDataUrl);
+
+        // Send the POST request to the server
+        fetch('/capture', {
+          method: 'POST',
+          body: formData,
+        })
+          .then(response => response.text())  // Read response as text
+          .then(data => {
+            // Handle the response from the server
+            console.log('Response:', data);
+          })
+          .catch(error => {
+            // Handle any errors that occurred during the request
+            console.error('Error:', error);
+          });
+      }  
+      // Add event listener to the capture button
+      const captureBtn = document.getElementById('capture-btn');
+      captureBtn.addEventListener('click', function () {
+          captureFrame();
+      });
+ */
+      // Function to save the captured frame as an image file
+      function saveImage(imageDataUrl) {
+        // Convert the data URL to a Blob object
+        const blob = dataURLtoBlob(imageDataUrl);
+
+        // Create a new File object from the Blob
+        const file = new File([blob], "captured_frame.png", { type: "image/png" });
+
+        // Create a FormData object to send the file
+        const formData = new FormData();
+        formData.append("image-file", file);
+
+        // Send the FormData to the server for saving the image
+        fetch("/capture", {  // Updated URL here
+          method: "POST",
+          body: formData,
+        })
+          .then(response => response.json())  // Read response as JSON
+          .then(data => {
+            // Handle the response from the server
+            console.log('Response:', data);
+            handleResponse(data);
+          })
+          .catch(error => {
+            // Handle any errors that occurred during the request
+            console.error('Error:', error);
+          });
+      }
+      const captureBtn = document.getElementById('capture-btn');
+      captureBtn.addEventListener('click', function () {
+          captureFrame();
+      });
+
+      // Function to capture a frame from the video stream
+      function captureFrame() {
+        // Create a canvas element to draw the video frame
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        // Set the canvas dimensions to match the video stream
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        // Draw the current video frame onto the canvas
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Convert the canvas image to a data URL
+        const imageDataUrl = canvas.toDataURL('image/png');
+
+        // Save the captured frame as an image file
+        saveImage(imageDataUrl);
+
+        // Send the captured frame to the server for processing
+        //sendFrame(imageDataUrl);
+      }
+      
+
+      // Function to convert a data URL to a Blob object
+      function dataURLtoBlob(dataURL) {
+        const arr = dataURL.split(',');
+        const mime = arr[0].match(/:(.*?);/)[1];
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+      }
+
+      // Start the video capture when the page loads
+      window.onload = function () {
+          startVideoCapture();
+      };
+
+      
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+

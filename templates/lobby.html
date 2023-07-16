@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- Coding by CodingLab || www.codinglabweb.com -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vitual Voice</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">Vitual voice</a>
+
+            <ul class="nav_items">
+                <li class="nav_item">
+                    <a href="#" class="nav_link">Home</a>
+                    <a href="#" class="nav_link">Services </a>
+                    <a href="#" class="nav_link">About us</a>
+                    <a href="#" class="nav_link">Contact</a>
+                </li>
+            </ul>
+
+            <button class="button" id="form-open">Login</button>
+            <!-- <button class="button" id="form-open">Signup</button> -->
+
+        </nav>
+    </header>
+
+    <!-- Main -->
+    <main>
+        <section>
+
+            <div id="vid">
+                <video id="localVideo" autoplay></video>
+                <video id="remoteVideo" autoplay></video>
+
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script>
+    <script>
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(stream => {
+                localVideo.srcObject = stream;
+
+                const configuration = {
+                    iceServers: [
+                        { urls: 'stun:stun.l.google.com:19302' },
+                        { urls: 'stun:stun.stunprotocol.org:3478' },
+                    ],
+                };
+
+                const peerConnection = new RTCPeerConnection(configuration);
+
+                // Add local stream to peer connection
+                stream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, stream);
+                });
+
+                // Handle incoming stream from remote peer
+                peerConnection.ontrack = event => {
+                    remoteVideo.srcObject = event.streams[0];
+                };
+
+                // Create and send offer to remote peer
+                peerConnection.createOffer()
+                    .then(offer => peerConnection.setLocalDescription(offer))
+                    .then(() => {
+                        // Send the offer to the remote peer using signaling mechanism (WebSocket, socket.io, etc.)
+                        const offerDescription = peerConnection.localDescription;
+                        console.log('Offer:', offerDescription);
+                    })
+                    .catch(error => {
+                        console.error('Error creating offer:', error);
+                    });
+
+                // Handle the answer from the remote peer
+                const remoteAnswerDescription = {/* Remote answer description received from signaling mechanism */ };
+                peerConnection.setRemoteDescription(remoteAnswerDescription)
+                    .then(() => {
+                        console.log('Remote answer set successfully.');
+                    })
+                    .catch(error => {
+                        console.error('Error setting remote answer:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error accessing media devices:', error);
+            });
+
+    </script>
+
+
+
+    <script src="script.js"></script>
+
+
+
+
+</body>
+
+</html>

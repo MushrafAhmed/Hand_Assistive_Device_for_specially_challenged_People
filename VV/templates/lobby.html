@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"content="description">
+    <meta name="author" content="Inovatik">
+
+
+    <!-- Website Title -->
+    <title>Visual Voice</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="static/css/swiper.css" rel="stylesheet">
+    <link href="static/css/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Favicon  -->
+    <link rel="icon" href="static/images/favicon.png">
+
+    <style>
+    #web{padding}
+
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+
+
+
+
+
+
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <a class="navbar-brand logo-text page-scroll" href="/">Visual Voice</a>
+
+            <!-- Image Logo -->
+            <!-- <a class="navbar-brand logo-image" href="index.html" style="font-size: 30px; font-weight:bolder">
+                Visual Voice -->
+                <!-- <img src="images/ss.jpg" alt="alternative"> -->
+
+            </a>
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <!-- end of mobile menu toggle button -->
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link page-scroll" href="index.html">HOME <span class="sr-only">(current)</span></a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn-outline-sm" href="#" style="background-color: red;"> Emergency </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="#" style="color: #5f4dee; background-color: #5f4dee;">y </a>
+                    </li>
+
+
+                </ul>
+
+                <span class="nav-item">
+                    <a class="btn-outline-sm" href="/"> Logout </a>
+                </span>
+            </div>
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+
+
+
+
+
+    <!-- Header -->
+    <header id="header" class="ex-2-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>First Person</h1>
+
+
+                </div> <!-- end of col -->
+            </div>
+            <div class="row">
+            <div id="vid" class="col-md-6 ">
+
+              <video id="localVideo" autoplay></video>
+
+           </div>
+            <div id="second" class="col-md-6">
+              <section class="msger ">
+                  <header class="msger-header">
+                    <div class="msger-header-title">
+                      <i class="fas fa-comment-alt"></i> Chat
+                    </div>
+                    <div class="msger-header-options">
+                      <span><i class="fas fa-cog"></i></span>
+                    </div>
+                  </header>
+
+                  <main class="msger-chat">
+                    <div class="msg left-msg">
+                      <div
+                       class="msg-img"
+                       style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+                      ></div>
+
+                      <div class="msg-bubble">
+                        <div class="msg-info">
+                          <div class="msg-info-name"></div>
+                          <div class="msg-info-time">12:45</div>
+                        </div>
+
+                        <div class="msg-text">
+                          Hi, welcome to Virtual Voice! 😄
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </main>
+
+                  <form class="msger-inputarea">
+                    <input type="text" class="msger-input" placeholder="Enter your message...">
+                    <button type="submit" class="msger-send-btn">Send</button>
+                  </form>
+                </section>
+          </div>
+        </div>
+            <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+
+    <main>
+
+
+
+    </main>
+
+
+
+
+    <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script>
+    <script>
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideo = document.getElementById('remoteVideo');
+
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+            .then(stream => {
+                localVideo.srcObject = stream;
+
+                const configuration = {
+                    iceServers: [
+                        { urls: 'stun:stun.l.google.com:19302' },
+                        { urls: 'stun:stun.stunprotocol.org:3478' },
+                    ],
+                };
+
+                const peerConnection = new RTCPeerConnection(configuration);
+
+                // Add local stream to peer connection
+                stream.getTracks().forEach(track => {
+                    peerConnection.addTrack(track, stream);
+                });
+
+                // Handle incoming stream from remote peer
+                peerConnection.ontrack = event => {
+                    remoteVideo.srcObject = event.streams[0];
+                };
+
+                // Create and send offer to remote peer
+                peerConnection.createOffer()
+                    .then(offer => peerConnection.setLocalDescription(offer))
+                    .then(() => {
+                        // Send the offer to the remote peer using signaling mechanism (WebSocket, socket.io, etc.)
+                        const offerDescription = peerConnection.localDescription;
+                        console.log('Offer:', offerDescription);
+                    })
+                    .catch(error => {
+                        console.error('Error creating offer:', error);
+                    });
+
+                // Handle the answer from the remote peer
+                const remoteAnswerDescription = {/* Remote answer description received from signaling mechanism */ };
+                peerConnection.setRemoteDescription(remoteAnswerDescription)
+                    .then(() => {
+                        console.log('Remote answer set successfully.');
+                    })
+                    .catch(error => {
+                        console.error('Error setting remote answer:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error accessing media devices:', error);
+            });
+
+
+
+    </script>
+
+
+
+
+
+    <script src="static/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="static/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="static/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="static/js/scripts.js"></script> <!-- Custom scripts -->
+</body>
+
+</html>

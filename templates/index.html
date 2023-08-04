@@ -1,359 +1,728 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vitual Voice</title>
-    <!--<link rel="stylesheet" href="style.css" />-->
-    <!-- Unicons -->
-    <!--<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" /> -->
-    <style>
-      body {
-        background-image: url("/styles/BGIMG.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      }
-    </style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"content="description">
+    <meta name="author" content="Inovatik">
 
-  </head>
-  <body>
+
+    <!-- Website Title -->
+    <title>Visual Voice</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="static/css/swiper.css" rel="stylesheet">
+    <link href="static/css/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/styles.css" rel="stylesheet">
+
+    <!-- Favicon  -->
+    <link rel="icon" href="static/images/favicon.png">
+</head>
+
+<body data-spy="scroll" data-target=".fixed-top">
+
+    <!-- Preloader -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+    <!-- end of preloader -->
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <a class="navbar-brand logo-text page-scroll" href="templates/index.html">Visual Voice</a>
+
+            <!-- Image Logo -->
+            <!-- <a class="navbar-brand logo-image" href="index.html" style="font-size: 30px; font-weight:bolder">
+                Visual Voice -->
+                <!-- <img src="images/ss.jpg" alt="alternative"> -->
+
+            </a>
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <!-- end of mobile menu toggle button -->
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#Team">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#contact">Contact Us<hfhf\<f>
+                                </f></a>
+                    </li>
+                </ul>
+                <span class="nav-item">
+                    <a class="btn-outline-sm" href="/log-in">LOG IN</a>
+                </span>
+            </div>
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
     <!-- Header -->
-    <header class="header">
-      <nav class="nav">
-        <a href="#" class="nav_logo">Vitual voice</a>
-
-        <ul class="nav_items">
-          <li class="nav_item">
-            <a href="/lobby.html" class="nav_link">Home</a>
-            <a href="#" class="nav_link">Services</a>
-            <a href="#" class="nav_link" id="about-link">About us</a>
-            <a href="#" class="nav_link">Contact</a>
-          </li>
-        </ul>
-
-        <button class="button" id="form-open">Login</button>
-        <!-- <button class="button" id="form-open">Signup</button> -->
-
-      </nav>
-    </header>
-
-    <!-- Home -->
-    <section class="home">
-      <div class="form_container">
-        <i class="uil uil-times form_close"></i>
-        <!-- Login From -->
-        <div class="form login_form">
-          <form action="#" enctype="multipart/form-data">
-            <h2>Login</h2>
-
-            <div class="input_box">
-              <input type="email" placeholder="Enter your email" required />
-              <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" placeholder="Enter your password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-
-            <div class="option_field">
-              <span class="checkbox">
-                <input type="checkbox" id="check" />
-                <label for="check">Remember me</label>
-              </span>
-              <a href="#" class="forgot_pw">Forgot password?</a>
-            </div>
-
-            <button class="button">Login Now</button>
-
-            <div class="login_signup">Don't have an account? <a href="#" id="signup">Signup</a></div>
-          </form>
-        </div>
-
-        <div id="video-container">
-          <video id="video-stream" autoplay></video>
-        </div>
-        <button id="capture-btn">Capture Frame</button>
-      </div>
-    
-        
-
-        <!-- Signup From -->
-        <div class="form signup_form">
-          <form action="#" enctype="multipart/form-data">
-            <h2>Signup</h2>
-
-            <div class="input_box">
-              <input type="email" placeholder="Enter your email" required />
-              <i class="uil uil-envelope-alt email"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" placeholder="Create password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-            <div class="input_box">
-              <input type="password" placeholder="Confirm password" required />
-              <i class="uil uil-lock password"></i>
-              <i class="uil uil-eye-slash pw_hide"></i>
-            </div>
-
-            <button class="button">Signup Now</button>
-
-            <div class="login_signup">Already have an account? <a href="#" id="login">Login</a></div>
-          </form>
-        </div>
-        
-        <!-- About Us -->
-        <div id="about-container" style="display: none;">
-          <p>Welcome to Visual Voices! We are a team of passionate individuals dedicated to developing a groundbreaking website that aims to revolutionize communication for the deaf and hard-of-hearing community.</p>
-
-  <p>Our mission is to bridge the communication gap by leveraging cutting-edge technology to recognize and convert American Sign Language (ASL) into text and voice.</p>
-
-  <p>With Visual Voices, we envision a world where people with hearing impairments can effortlessly communicate with others, breaking barriers and fostering inclusivity.</p>
-
-  <p>Our team consists of highly skilled developers, designers, and linguists who have come together with a shared vision to empower individuals with hearing challenges.</p>
-
-  <p>Join us on this exciting journey as we strive to make a positive impact in the lives of millions through accessible communication.</p>
-        </div>
-      </div>
-
-      <div id="predicted_text_container">
-        <h3>Prediction: <span id="predicted_text"></span></h3>
-      </div>
-        
-      <!--<button id="capture-btn">Capture Frame</button>-->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-xl-5">
+                        <div class="text-container">
+                            <h1>Speak Your Mind with Visual Voice</h1>
+                            <p class="p-large">Voice Your Opinion with Confidence</p>
+                            <a class="btn-solid-lg page-scroll" href="/sign-up">SIGN UP</a>
+                        </div> <!-- end of text-container -->
+                    </div> <!-- end of col -->
+                    <div class="col-lg-4 col-xl-3">
+                        <div class="image-container">
+                            <div class="img-wrapper">
+                                <img class="img-fluid" src="static/images/stacks.jpg" alt="alternative" style="width: 1000px; height:400px;">
+                            </div> <!-- end of img-wrapper -->
+                        </div> <!-- end of image-container -->
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of header-content -->
+    </header> <!-- end of header -->
+    <svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        viewBox="0 0 1920 310">
+        <defs>
+            <style>
+                .cls-1 {
+                    fill: #5f4def;
+                }
+            </style>
+        </defs>
+        <title>header-frame</title>
+        <path class="cls-1"
+            d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z" />
+    </svg>
+    <!-- end of header -->
 
 
+    <!-- Platforms Used -->
+    <div class="slider-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
 
-      <div>
-        <button id="emergency-btn" onclick="handleEmergency()">Emergency</button>
-      </div>
-      <style>
-      
-        #emergency-btn {
-          display: block;
-          margin: 10px auto;
-          padding: 10px 20px;
-          background-color: red;
-          color: #fff;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          font-size: 18px;
-          font-weight: bold;
-          transition: background-color 0.3s ease;
-        }
-      
-        #emergency-btn:hover {
-          background-color: #ff0000;
-        }
-      </style>
+                    <!-- Text/ Image Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container image-slider">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                    <h5>HTML</h5>
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>CSS</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Javascript</h5>
 
-      
-    </section>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Python</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>CNN</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Open CV</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
 
-    <script>
-      function handleEmergency() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(sendEmergencyEmail);
-        } else {
-          console.error("Geolocation is not supported by this browser.");
-        }
-      }
-    
-      function sendEmergencyEmail(position) {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-    
-        // Prepare the data to be sent to the Flask endpoint
-        const data = {
-          emergency_contact: 'datlarakesh3@gmail.com',
-          latitude: latitude,
-          longitude: longitude
-        };
-    
-        // Send an AJAX request to the Flask endpoint
-        fetch('/emergency', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        })
-        .then(response => {
-          console.log('Emergency email sent successfully.');
-        })
-        .catch(error => {
-          console.error('Error sending emergency email:', error);
-        });
-      }
-    </script>
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>GitHub</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Trello</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Tensor flow</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Flask</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Bootstrap</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>SQL</h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                                <div class="swiper-slide">
+                                    <h5>Amazon cloud </h5>
+                                    <!-- <img class="img-fluid" src="images/#.png" alt="alternative"> -->
+                                </div>
+                            </div> <!-- end of swiper-wrapper -->
+                        </div> <!-- end of swiper container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of Text/ image  slider -->
 
-
-
-    <input type="hidden" id="image-data" name="image-data" />
-
-    <script>
-      document.getElementById("about-link").addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent the default link behavior
-
-        var aboutContainer = document.getElementById("about-container");
-        if (aboutContainer.style.display === "none") {
-          aboutContainer.style.display = "block";
-        } else {
-          aboutContainer.style.display = "none";
-        }
-      });
-    </script>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-1 -->
+    <!-- end of platform -->
 
 
-    <script>
-      // Get the video stream element
-      const video = document.getElementById('video-stream');
+    <!-- Description -->
+    <div class="cards-1">
+        <div class="container">
+            <div class="row">
+                <div class="c">
+                    <section id="section-63c7d57f9499b"
+                        class="s123-module s123-module-headers layout-9 bg-primary parallax-on"
+                        data-parallax-images-amount="1" data-module-id="63c7d57f9499b" data-module-type-num="167"
+                        data-slider-speed="5">
+                        <!-- Container -->
+                        <div class="container-fluid" style=" background-color: white;">
+                            <div class="headers-container second-side hpm-height-50vh"
+                                style=" background-color: white;">
+                                <div class="headers-text-wrap headers-text-resize-container"
+                                    style=" background-color: white;">
+                                    <div class="" style=" background-color: white;">
+                                        <div class="headers-text-orders" style=" background-color: white;">
+                                            <!-- Header 1 -->
+                                            <div data-aos="fade-up" style=" background-color: white;">
+                                                <div class="m-h-item header1 header-300 weight700 header-modules-header-font"
+                                                    style=" background-color: white;" data-old-bold="true">
+                                                    <h2 class="h2-heading" id="about">About Us </h2>
+                                                </div>
+                                            </div>
+                                            <div class="line headers-text-separator"></div>
+                                            <!-- Header 2 -->
+                                            <div data-aos="fade-up">
+                                                <div class="m-h-item header2 text-120 header-global-font"
+                                                    style=" background-color: white; font-weight: bold;">
+                                                    Welcome to our Sign Language Translator site! We are a passionate
+                                                    team dedicated to empowering the deaf community and promoting
+                                                    inclusivity.
+                                                    Our user-friendly platform bridges spoken and sign languages,
+                                                    ensuring effective communication for all. With the expertise of sign
+                                                    language experts,
+                                                    interpreters, and cutting-edge technology, we provide accurate,
+                                                    real-time translations. Privacy and data security are paramount to
+                                                    us, so your information is always protected. We believe in the power
+                                                    of technology to break barriers, and our journey continues to expand
+                                                    services and embrace new sign languages. Join us today to celebrate
+                                                    the beauty of sign language and foster understanding worldwide.
+                                                </div>
+                                                <br>
+                                                <br><br><br>
+                                            </div>
+                                        </div>
+                                        <div class="header-spacer" data-text-exist="true" data-action-exist="false">
+                                        </div>
 
-      // Function to start the video capture
-      function startVideoCapture() {
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices
-            .getUserMedia({ video: true })
-            .then(function (stream) {
-              // Set the video stream as the source for the video element
-              video.srcObject = stream;
-            })
-            .catch(function (error) {
-              console.error('Error accessing webcam:', error);
-            });
-        } else {
-          console.error('getUserMedia not supported');
-        }
-      }
+                                    </div>
+                                </div>
+                                <!-- Board background -->
+                                <div class="headers-img-wrap">
+                                    <div class="headers-carousel-deactivated carousel slide carousel-fade">
+                                        <div class="carousel-inner">
+                                            <div class="item active one-item">
+                                                <div class="headers-item">
+                                                    <div data-idele="parallax_headers_mirror_63c7d57f9499b"
+                                                        data-bleed="30"
+                                                        data-image-src="https://static1.s123-cdn-static-a.com/uploads/8323195/2000_64b594895484c.jpg"
+                                                        data-position="center center"
+                                                        data-background-position="center center"
+                                                        class="headers-image parallax-window"
+                                                        data-bg="https://static1.s123-cdn-static-a.com/uploads/8323195/2000_64b594895484c.jpg"
+                                                        style="
+                                      background-image: url(https://static1.s123-cdn-static-a.com/uploads/8323195/2000_64b594895484c.jpg);
+                                      background-position: center center;
+                                    "></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom text -->
+                        </div>
+                    </section>
 
-      function handleResponse(response) {
-        if (response.predicted_text) {
-          // Display the predicted text on the web page
-          const predictedText = response.predicted_text;
-          document.getElementById('predicted_text').textContent = predictedText;
-        } else if (response.error) {
-          // Handle the error returned from the server
-          console.error('Error:', response.error);
-        }
-      }
 
-       /* // Function to send the captured frame to the server
-       function sendFrame(imageDataUrl) {
-        // Create a new FormData object
-        const formData = new FormData();
 
-        // Append the image data to the FormData object
-        formData.append('image-data', imageDataUrl);
 
-        // Send the POST request to the server
-        fetch('/capture', {
-          method: 'POST',
-          body: formData,
-        })
-          .then(response => response.text())  // Read response as text
-          .then(data => {
-            // Handle the response from the server
-            console.log('Response:', data);
-          })
-          .catch(error => {
-            // Handle any errors that occurred during the request
-            console.error('Error:', error);
-          });
-      }  
-      // Add event listener to the capture button
-      const captureBtn = document.getElementById('capture-btn');
-      captureBtn.addEventListener('click', function () {
-          captureFrame();
-      });
- */
-      // Function to save the captured frame as an image file
-      function saveImage(imageDataUrl) {
-        // Convert the data URL to a Blob object
-        const blob = dataURLtoBlob(imageDataUrl);
+                    <h2 class="h2-heading">The challenge is huge</h2>
+                </div> <!-- end of col -->
+            </div> <!-- end of row --><div class="above-heading"></div>
 
-        // Create a new File object from the Blob
-        const file = new File([blob], "captured_frame.png", { type: "image/png" });
+            <div class="row">
+                <div class="col-lg-12">
 
-        // Create a FormData object to send the file
-        const formData = new FormData();
-        formData.append("image-file", file);
+                    <!-- Box 1 -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="static/images/description-1.png" alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">466 000 000 +                            </h4>
+                            <p>Number of people with hearing loss in the world
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of Box 1  -->
 
-        // Send the FormData to the server for saving the image
-        fetch("/capture", {  // Updated URL here
-          method: "POST",
-          body: formData,
-        })
-          .then(response => response.json())  // Read response as JSON
-          .then(data => {
-            // Handle the response from the server
-            console.log('Response:', data);
-            handleResponse(data);
-          })
-          .catch(error => {
-            // Handle any errors that occurred during the request
-            console.error('Error:', error);
-          });
-      }
-      const captureBtn = document.getElementById('capture-btn');
-      captureBtn.addEventListener('click', function () {
-          captureFrame();
-      });
+                    <!-- Box 2 -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="static/images/description-2.png" alt="alternative">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">48 000 000 +</h4>
+                            <p>Number of deaf or hard of hearing in the US
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of Box 2 -->
 
-      // Function to capture a frame from the video stream
-      function captureFrame() {
-        // Create a canvas element to draw the video frame
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
+                    <!-- Box 3 -->
+                    <div class="card">
+                        <div class="card-image">
+                            <img class="img-fluid" src="static/images/sign-language-alphabet.gif" alt="alternative" style="height: 200px;">
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">2 000 000
+                            </h4>
+                            <p>American Sign Language speakers in the US
+                            </p>
+                        </div>
+                    </div>
+                    <!-- end of Box 3 -->
 
-        // Set the canvas dimensions to match the video stream
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of cards-1 -->
+    <!-- end of description -->
 
-        // Draw the current video frame onto the canvas
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+<hr>
 
-        // Convert the canvas image to a data URL
-        const imageDataUrl = canvas.toDataURL('image/png');
 
-        // Save the captured frame as an image file
-        saveImage(imageDataUrl);
 
-        // Send the captured frame to the server for processing
-        //sendFrame(imageDataUrl);
-      }
-      
+    <h2 class="h2-heading" id="Team" style="text-align: center;">Team</h2>
 
-      // Function to convert a data URL to a Blob object
-      function dataURLtoBlob(dataURL) {
-        const arr = dataURL.split(',');
-        const mime = arr[0].match(/:(.*?);/)[1];
-        const bstr = atob(arr[1]);
-        let n = bstr.length;
-        const u8arr = new Uint8Array(n);
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
-        return new Blob([u8arr], { type: mime });
-      }
 
-      // Start the video capture when the page loads
-      window.onload = function () {
-          startVideoCapture();
-      };
 
-      
-    </script>
-  </body>
+    <!-- Team -->
+    <div class="slider-2">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Text Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container text-slider">
+                            <div class="swiper-wrapper">
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/abhishek.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text">Designs and implements the user interface of a
+                                            software application, focusing on creating an intuitive and visually
+                                            appealing user experience.</div>
+                                        <div class="Team-author">Abhishek Singh - Frontend Developer</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/rakesh.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text">Develops the user-facing components of a software
+                                            application and generates detailed reports for data analysis.</div>
+                                        <div class="Team-author">Rakesh Varma Dhatla - Frontend and Report</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/pooja.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Responsible for extracting data from various
+                                            sources using automated techniques..</div>
+                                        <div class="Team-author">Pooja Dilipbhai Katrodiya - Data Scraping</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/reshma.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Involves building statistical or machine learning
+                                            models to analyze and interpret data and make predictions or
+                                            recommendations.</div>
+                                        <div class="Team-author">Reshma Rajendran Shivdas Kunjpilla - Modelling
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/keyur.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text">Builds mathematical or statistical models to
+                                            analyze complex data sets and generate insights or predictions</div>
+                                        <div class="Team-author">Keyur Denish Thakkar - Modelling</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/pooja.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text">Responsible for extracting data from various
+                                            sources using automated techniques.</div>
+                                        <div class="Team-author">Anaum Fathima - Data Scraping </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/pooja.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text">Focuses on identifying and rectifying errors,
+                                            inconsistencies, and inaccuracies in datasets to ensure data quality.</div>
+                                        <div class="Team-author">Kritika - Data Cleaning</div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/rakesh.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Conducts thorough testing of software
+                                            applications and performs data cleaning to ensure accurate and reliable
+                                            results.</div>
+                                        <div class="Team-author">Mushraf Ahmed - Testing and Data Cleaning
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/reshma.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Works on the server-side of a software
+                                            application, integrating various components and ensuring smooth
+                                            communication between different systems.</div>
+                                        <div class="Team-author">Keerthana Tantati - Backend Integration
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/keyur.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Works on the server-side of a software
+                                            application, integrating various components and ensuring smooth
+                                            communication between different systems.</div>
+                                        <div class="Team-author">Jayasimha Reddy Padamla - Backend Integration
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/reshma.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Labels or tags data to create training datasets
+                                            for machine learning algorithms.
+                                        </div>
+                                        <div class="Team-author">Rithika Florence Muthabathula - Data Annotator
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/pooja.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Responsible for designing, organizing, and
+                                            managing databases to store and retrieve data efficiently
+                                        </div>
+                                        <div class="Team-author">Anita Nomula - Database Management
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+                                <!-- Slide -->
+                                <div class="swiper-slide">
+                                    <div class="image-wrapper">
+                                        <img class="img-fluid" src="static/images/rakesh.jpg" alt="alternative">
+                                    </div> <!-- end of image-wrapper -->
+                                    <div class="text-wrapper">
+                                        <div class="Team-text"> Improves the efficiency and effectiveness of
+                                            machine learning models and evaluates their performance using appropriate
+                                            metrics.
+                                        </div>
+                                        <div class="Team-author">Kuldip Hareshbhai Mangrola - Model Optimization
+                                        </div>
+                                    </div> <!-- end of text-wrapper -->
+                                </div> <!-- end of swiper-slide -->
+                                <!-- end of slide -->
+
+
+
+
+                            </div> <!-- end of swiper-wrapper -->
+
+
+                            <!-- Add Arrows -->
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <!-- end of add arrows -->
+
+                        </div> <!-- end of swiper-container -->
+                    </div> <!-- end of slider-container -->
+                    <!-- end of text slider -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of slider-2 -->
+    <!-- end of Team -->
+
+
+<!-- Contact US Form -->
+    <div class="form" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-container">
+                        <div class="above-heading"></div>
+                        <h2 >Contact Us</h2>
+
+                        <!-- Contact US Form -->
+                        <form id="Contact" data-toggle="validator" data-focus="false">
+                            <div class="form-group">
+
+
+                                <input type="text"  name="text-1487059525060" placeholder="Full Name" class="form-control">
+
+                <br>
+
+                                    <input type="email"  name="email-1487059590245" placeholder="E-mail" class="form-control">
+
+                                <br>
+                                    <div class="form-group"><textarea name="textarea-1527675083698" placeholder="Message" class="form-control"
+                                            rows="4"></textarea>
+
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group checkbox">
+                                        <input type="checkbox" id="nterms" value="Agreed-to-Terms" required>I've read
+                                        and agree
+                                        to Tivo's written <a href="privacy-policy.html">Privacy Policy</a> and <a
+                                            href="terms-conditions.html">Terms Conditions</a>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <br>
+                                        <button type="submit" class="form-control-submit-button">Submit</button>
+                                    </div>
+                                    <div class="form-message">
+                                        <div id="nmsgSubmit" class="h3 text-center hidden"></div>
+                                    </div>
+                        </form>
+                        <!-- end of Contact form -->
+
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="icon-container">
+
+                    </div> <!-- end of col -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of form -->
+    <!-- end of Contact us   -->
+
+
+    <!-- Footer -->
+    <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+        viewBox="0 0 1920 79">
+        <defs>
+            <style>
+                .cls-2 {
+                    fill: #5f4def;
+                }
+            </style>
+        </defs>
+        <title>footer-frame</title>
+        <path class="cls-2"
+            d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z"
+            transform="translate(0 -0.188)" />
+    </svg>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-col first">
+                        <h4>About Us</h4>
+                        <p class="p-small">We're passionate about Enpowering  needy people with our technical skills  </p>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col middle">
+                        <h4>Important Links</h4>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Read our <a class="white" href="#">Terms &
+                                        Conditions</a>, <a class="white" href="#">Privacy Policy</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="col-md-4">
+                    <div class="footer-col last">
+                        <h4>Contact</h4>
+                        <ul class="list-unstyled li-space-lg p-small">
+                            <li class="media">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="media-body"> Loyalist College, North York , CA </div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-envelope"></i>
+                                <div class="media-body"><a class="white"
+                                        href="#">Visualvoice@loyalistcollege.com</a> <i class="fas fa-globe"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of footer -->
+    <!-- end of footer -->
+
+
+    <!-- Copyright -->
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="p-small">Copyright © 2020 <a href="#"> Visual Voice </a><br>
+
+                    </p>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright -->
+    <!-- end of copyright -->
+
+
+    <!-- Scripts -->
+    <script src="static/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="static/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="static/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="static/js/scripts.js"></script> <!-- Custom scripts -->
+</body>
+
 </html>
-
-
-
-
-
-
-

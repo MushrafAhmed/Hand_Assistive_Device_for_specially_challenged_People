@@ -1,48 +1,161 @@
 <!DOCTYPE html>
-<!-- Coding by CodingLab || www.codinglabweb.com -->
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vitual Voice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"content="description">
+    <meta name="author" content="Inovatik">
+
+
+    <!-- Website Title -->
+    <title>Visual Voice</title>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="static/css/bootstrap.css" rel="stylesheet">
+    <link href="static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="static/css/swiper.css" rel="stylesheet">
+    <link href="static/css/magnific-popup.css" rel="stylesheet">
+    <link href="static/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
-    <!-- Unicons -->
+
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+    <!-- Favicon  -->
+    <link rel="icon" href="static/images/favicon.png">
+
+    <style>
+    #web{padding}
+
+    </style>
 </head>
 
-<body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="nav_logo">Vitual voice</a>
+<body data-spy="scroll" data-target=".fixed-top">
 
-            <ul class="nav_items">
-                <li class="nav_item">
-                    <a href="#" class="nav_link">Home</a>
-                    <a href="#" class="nav_link">Services </a>
-                    <a href="#" class="nav_link">About us</a>
-                    <a href="#" class="nav_link">Contact</a>
-                </li>
-            </ul>
 
-            <button class="button" id="form-open">Login</button>
-            <!-- <button class="button" id="form-open">Signup</button> -->
 
-        </nav>
-    </header>
 
-    <!-- Main -->
-    <main>
-        <section>
 
-            <div id="vid">
-                <video id="localVideo" autoplay></video>
-                <video id="remoteVideo" autoplay></video>
 
+
+
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+
+            <!-- Text Logo - Use this if you don't have a graphic logo -->
+            <a class="navbar-brand logo-text page-scroll" href="/">Visual Voice</a>
+
+            <!-- Image Logo -->
+            <!-- <a class="navbar-brand logo-image" href="index.html" style="font-size: 30px; font-weight:bolder">
+                Visual Voice -->
+                <!-- <img src="images/ss.jpg" alt="alternative"> -->
+
+            </a>
+            <!-- Mobile Menu Toggle Button -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-awesome fas fa-bars"></span>
+                <span class="navbar-toggler-awesome fas fa-times"></span>
+            </button>
+            <!-- end of mobile menu toggle button -->
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link page-scroll" href="index.html">HOME <span class="sr-only">(current)</span></a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn-outline-sm" href="#" style="background-color: red;"> Emergency </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn" href="#" style="color: #5f4dee; background-color: #5f4dee;">y </a>
+                    </li>
+
+
+                </ul>
+
+                <span class="nav-item">
+                    <a class="btn-outline-sm" href="/"> Logout </a>
+                </span>
             </div>
-        </section>
+        </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <!-- end of navigation -->
+
+
+
+
+
+
+
+    <!-- Header -->
+    <header id="header" class="ex-2-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>First Person</h1>
+
+
+                </div> <!-- end of col -->
+            </div>
+            <div class="row">
+            <div id="vid" class="col-md-6 ">
+
+              <video id="localVideo" autoplay></video>
+
+           </div>
+            <div id="second" class="col-md-6">
+              <section class="msger ">
+                  <header class="msger-header">
+                    <div class="msger-header-title">
+                      <i class="fas fa-comment-alt"></i> Chat
+                    </div>
+                    <div class="msger-header-options">
+                      <span><i class="fas fa-cog"></i></span>
+                    </div>
+                  </header>
+
+                  <main class="msger-chat">
+                    <div class="msg left-msg">
+                      <div
+                       class="msg-img"
+                       style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+                      ></div>
+
+                      <div class="msg-bubble">
+                        <div class="msg-info">
+                          <div class="msg-info-name"></div>
+                          <div class="msg-info-time">12:45</div>
+                        </div>
+
+                        <div class="msg-text">
+                          Hi, welcome to Virtual Voice! 😄
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </main>
+
+                  <form class="msger-inputarea">
+                    <input type="text" class="msger-input" placeholder="Enter your message...">
+                    <button type="submit" class="msger-send-btn">Send</button>
+                  </form>
+                </section>
+          </div>
+        </div>
+            <!-- end of row -->
+        </div> <!-- end of container -->
+    </header> <!-- end of ex-header -->
+    <!-- end of header -->
+
+    <main>
+
+
+
     </main>
 
 
@@ -102,15 +215,18 @@
                 console.error('Error accessing media devices:', error);
             });
 
+
+
     </script>
 
 
 
-    <script src="script.js"></script>
 
 
-
-
+    <script src="static/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="static/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="static/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="static/js/scripts.js"></script> <!-- Custom scripts -->
 </body>
 
 </html>

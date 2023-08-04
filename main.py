@@ -1,113 +1,106 @@
-import cv2
-from flask import Flask, jsonify, request, render_template
-import base64
-import numpy as np
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-import os
-from flask import request
-import glob
+# app.py
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, validators
+from wtforms.validators import DataRequired, Email
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
+import re
 
-app = Flask(__name__)
-camera = cv2.VideoCapture(0, cv2.CAP_V4L2)
-
-def predict_text(image):
-    # Preprocess the image
-    # preprocessed_image = preprocess_image(image)
-
-    # Pass the preprocessed image through the model
-    # predictions = model.predict(preprocessed_image)
-
-    # Get the predicted text
-    predicted_text = "Sample Text"  # Replace with your actual code to extract the text from predictions
-
-    return predicted_text
+#import mysql.connector
 
 
-# Route to capture and process photos
-@app.route('/capture', methods=['POST'])
-def capture():
-    # Retrieve the captured image data from the request
-    image_file = request.files.get('image-file')
 
-    # Check if image_file is None or empty
-    if image_file is None or image_file.filename == '':
-        return jsonify({'error': 'No image file received'})
+app = Flask(__name__, template_folder='templates')
+#app.secret_key = 'your_secret_key'
 
-    # Delete older images if the maximum limit is reached
-    image_files = glob.glob(os.path.join(SAVE_IMAGE_FOLDER, '*.png'))
-    if len(image_files) >= MAX_SAVED_IMAGES:
-        oldest_image = min(image_files, key=os.path.getctime)
-        os.remove(oldest_image)
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'NAperu@PJR#1'
+app.config['MYSQL_DB'] = 'signlanguage'
 
-    # Save the image file to a desired location
-    save_path = os.path.join(SAVE_IMAGE_FOLDER, image_file.filename)
-    image_file.save(save_path)
+mysql = MySQL(app)
+#conn = mysql.connector.connect(host="localhost", user="root", password="root123", database="signlanguage")
+#cursor = conn.cursor()
+class SignUpForm(FlaskForm):
+    Name = StringField('Name', validators=[DataRequired()])
+    Email = StringField('Email', validators=[DataRequired(), Email()])
+    EmergencyMobileNo = StringField('Emergency Mobile no.', validators=[DataRequired()])
+    EmergencyEmail = StringField('EmergencyEmail', validators=[DataRequired()])
+    Password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('SIGN UP')
 
-    # Perform predictions on the saved image
-    predicted_text = perform_predictions_on_image(save_path)
+class logInForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('LOG IN')
 
-    # Optionally, you can return the predicted text as a response
-    return jsonify({'predicted_text': predicted_text})
+class lobbyForm(FlaskForm):
+    submit = SubmitField()
 
-
-# Route to render the index.html template
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
 
-SAVE_IMAGE_FOLDER = 'C:/Users/Lenovo/flask/images'
-MAX_SAVED_IMAGES = 5
+@app.route('/sign-up', methods=['GET', 'POST'])
+def signup():
+    msg = ''
+    #form = SignUpForm()
+    if request.method == 'POST' and 'name' in request.form and 'email' in request.form and 'emergencymobileno' in request.form and 'emergencyemail' in request.form and 'password' in request.form:
+        name = request.form['name']
+        email = request.form['email']
+        emergencymobileno = request.form['emergencymobileno']
+        emergencyemail = request.form['emergencyemail']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM users WHERE name = % s', (name,))
+        account = cursor.fetchone()
+        if account:
+            msg = 'Account already exists !'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address !'
+        elif not re.match(r'[A-Za-z0-9]+', name):
+            msg = 'Name must contain only characters and numbers !'
+        elif not name or not password or not email:
+            msg = 'Please fill out the form !'
+        else:
+            cursor.execute('INSERT INTO users VALUES (NULL, % s, % s, % s, %s, %s)', (name, email, emergencymobileno, emergencyemail, password,))
+            mysql.connection.commit()
+            msg = 'You have successfully registered !'
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
 
-# Function to perform predictions on the saved image
-def perform_predictions_on_image(image_path):
-    # Load the saved image
-    saved_image = cv2.imread(image_path)
+    return render_template('sign-up.html', msg=msg)
 
-    # Perform any necessary preprocessing on the image
-
-    # Pass the preprocessed image through the model for predictions
-    predicted_text = predict_text(saved_image)
-
-    return predicted_text
+    return redirect(url_for('login'))
 
 
-SMTP_SERVER = 'smtp-relay.sendinblue.com'
-SMTP_PORT = 587
-SMTP_USERNAME = 'datlarakesh3@gmail.com'
-SMTP_PASSWORD = 'Rakesh@2000'
+    #return render_template('sign-up.html', form=form)
+#app.run(host='localhost', port=3306)
 
-@app.route('/emergency', methods=['POST'])
-def handle_emergency():
-    # Get the emergency contact details from the request JSON
-    data = request.get_json()
-    emergency_contact = data.get('emergency_contact')
-    latitude = data.get('latitude')
-    longitude = data.get('longitude')
+@app.route('/log-in', methods=['GET', 'POST'])
+def login():
+    msg = ''
+    if request.method == 'POST' and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
+        password = request.form['password']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM users WHERE email = % s AND password = % s', (email, password,))
+        account = cursor.fetchone()
+        account
+        if account:
+            session['loggedin'] = True
+            #session['id'] = account['id']
+            session['email'] = account['email']
+            msg = 'Logged in successfully !'
+            return render_template('lobby.html', msg=msg)
+        else:
+            msg = 'Incorrect username / password !'
+    return render_template('log-in.html', msg=msg)
 
-    # Compose the email message
-    subject = "Emergency Alert!"
-    message = f"Emergency! I need help!\n\nLocation: Latitude {latitude}, Longitude {longitude}"
-    sender_email = 'datlarakesh3@gmail.com'
-    receiver_email = emergency_contact
-
-    # Create a multipart message and set the headers
-    msg = MIMEMultipart()
-    msg['From'] = sender_email
-    msg['To'] = receiver_email
-    msg['Subject'] = subject
-
-    # Attach the message to the email
-    msg.attach(MIMEText(message, 'plain'))
-
-    # Set up the SMTP connection
-    with smtplib.SMTP('smtp-relay.sendinblue.com', 587) as server:
-        server.starttls()
-        server.login('datlarakesh3@gmail.com', 'Rakesh@2000')
-        server.send_message(msg)
-
-    return 'Email sent successfully'
-
-if __name__ == '__main__':
+@app.route('/lobby', methods=['GET', 'POST'])
+def lobby():
+    form = lobbyForm()
+    return render_template('lobby.html', form=form)
+if __name__ == "__main__":
     app.run(debug=True)
